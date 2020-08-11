@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ":rocket: "
+title: "[Feature] "
 labels: ":rocket: Feature"
 assignees: ''
 
