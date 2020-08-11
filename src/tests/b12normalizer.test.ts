@@ -45,9 +45,11 @@ describe('B12Normalizer', () => {
       expect(normalizer.parsers.size).toBe(1);
       expect(normalizer.parsers.get('returnTest')!('osf')).toBe('test');
 
-      normalizer.addParser('returnTest', (value: any) => value + 'test');
-      expect(normalizer.parsers.size).toBe(1);
-      expect(normalizer.parsers.get('returnTest')!('osf')).toBe('test');
+      try {
+        normalizer.addParser('returnTest', (value: any) => value + 'test');
+      } catch (e) {
+        expect(e.message).toBe('Parser already exist');
+      }
     });
 
   });
@@ -109,6 +111,14 @@ describe('B12Normalizer', () => {
 
       expect(result).toStrictEqual({username: 'jack', password: 'J4CK'});
     });
+
+    it('Should fail to normalize with invalid parser', () => {
+      try {
+        buildedNormalizer.normalize({username: 'jack', password: 'j4ck'}, {password: 'invalidParser'});
+      } catch (e) {
+        expect(e.message).toBe(`Parser 'invalidParser' not found`)
+      }
+    })
 
     it('Should normalize a simple flat object with multiple type of parsers', () => {
       const result = buildedNormalizer.normalize({

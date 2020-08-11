@@ -21,7 +21,7 @@ export class B12Normalizer {
    */
   public addParser(name: string, parser: ParserFunction) {
     if (this._parsers.get(name))
-      return; // TODO: Throw exception
+      throw new Error('Parser already exist');
 
     this.setParser(name, parser);
   }
@@ -123,7 +123,7 @@ export class B12Normalizer {
     const parser = this._parsers.get(rule);
 
     if (!parser) {
-      return value; // TODO: Throw exception
+      throw new Error(`Parser '${rule}' not found`);
     }
 
     return parser(value);
