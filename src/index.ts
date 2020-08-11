@@ -1,3 +1,9 @@
-import B12Normalizer from "./B12Normalizer";
+import {B12Normalizer} from './B12Normalizer';
+import * as StringParsers from './parsers/string.parsers';
 
-export default new B12Normalizer();
+const buildedNormalizer = new B12Normalizer();
+
+buildedNormalizer.addParser('toUpperCase', StringParsers.toUpperCase);
+buildedNormalizer.addParser('toLowerCase', StringParsers.toLowerCase);
+
+export default buildedNormalizer;
