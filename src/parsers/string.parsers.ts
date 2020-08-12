@@ -11,3 +11,12 @@ export function toUpperCase(value: any) {
 
   return value.toUpperCase();
 }
+
+export function split(value: any, params: any) {
+  if (!value.split)
+    return value;
+
+  const separator = params.separator || ',';
+
+  return value.split(separator);
+}

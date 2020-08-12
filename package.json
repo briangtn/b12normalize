@@ -1,6 +1,6 @@
 {
   "name": "b12normalize",
-  "version": "0.1.0",
+  "version": "0.0.1-alpha",
   "description": "A super b12 powered js normalizer",
   "main": "lib/index.js",
   "directories": {

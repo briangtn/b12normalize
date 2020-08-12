@@ -1,4 +1,4 @@
-import {toLowerCase, toUpperCase} from '../../parsers/string.parsers'
+import {split, toLowerCase, toUpperCase} from '../../parsers/string.parsers'
 
 describe('String parsers', () => {
 
@@ -21,5 +21,19 @@ describe('String parsers', () => {
       expect(toUpperCase('I\'m Not To UppEr')).toBe('I\'M NOT TO UPPER');
     });
   });
+
+  describe('split function', () => {
+    it('Should return the input value if split method does not exist', () => {
+      expect(split(3, {})).toBe(3);
+    });
+
+    it('Should split at \',\' if no separator given', () => {
+      expect(split('Hello  ,  World,!', {})).toStrictEqual(['Hello  ', '  World', '!']);
+    });
+
+    it('Should split at \'@\'', () => {
+      expect(split('Hello  @  World@!', {separator: '@'})).toStrictEqual(['Hello  ', '  World', '!']);
+    });
+  })
 
 });

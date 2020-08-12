@@ -139,6 +139,7 @@ describe('B12Normalizer', () => {
         username: 'jack',
         password: 'j4ck',
         email   : 'Jack@SparrowCompany.com',
+        bio     : 'I\'m J4ck Sparrow$And I want to buy a new boat$:)',
         vehicles: [
           {
             type: 'Boat',
@@ -152,6 +153,7 @@ describe('B12Normalizer', () => {
       }, {
         username: (value: any) => (value + 's'),
         password: 'toUpperCase',
+        bio     : {parser: 'split', arguments: {separator: '$'}},
         email   : ['toLowerCase', (value: any) => {
           return 'email: ' + value;
         }],
@@ -166,6 +168,7 @@ describe('B12Normalizer', () => {
         username: 'jacks',
         password: 'J4CK',
         email   : 'email: jack@sparrowcompany.com',
+        bio     : ['I\'m J4ck Sparrow', 'And I want to buy a new boat', ':)'],
         vehicles: [
           {
             type: 'Boat',

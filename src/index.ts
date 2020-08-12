@@ -5,5 +5,6 @@ const buildedNormalizer = new B12Normalizer();
 
 buildedNormalizer.addParser('toUpperCase', StringParsers.toUpperCase);
 buildedNormalizer.addParser('toLowerCase', StringParsers.toLowerCase);
+buildedNormalizer.addParser('split', StringParsers.split);
 
 export default buildedNormalizer;
