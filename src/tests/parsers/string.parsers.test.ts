@@ -1,4 +1,4 @@
-import {split, toLowerCase, toUpperCase} from '../../parsers/string.parsers'
+import {replace, split, substr, substring, toLowerCase, toUpperCase} from '../../parsers/string.parsers'
 
 describe('String parsers', () => {
 
@@ -34,6 +34,36 @@ describe('String parsers', () => {
     it('Should split at \'@\'', () => {
       expect(split('Hello  @  World@!', {separator: '@'})).toStrictEqual(['Hello  ', '  World', '!']);
     });
-  })
+  });
+
+  describe('replace function', () => {
+    it('Should return the input value if replace method does not exist', () => {
+      expect(replace(3, {})).toBe(3);
+    });
+
+    it('Should replace \'Hello\' by \'Hi\'', () => {
+      expect(replace('Hello World!', {search: 'Hello', replace: 'Hi'})).toBe('Hi World!');
+    });
+  });
+
+  describe('substr function', () => {
+    it('Should return the input value if substr method does not exist', () => {
+      expect(substr(3, {})).toBe(3);
+    });
+
+    it('Should get 7 characters from index 5', () => {
+      expect(substr('Jack Sparrow', {start: 5, length: 7})).toBe('Sparrow');
+    });
+  });
+
+  describe('substring function', () => {
+    it('Should return the input value if substring method does not exist', () => {
+      expect(substring(3, {})).toBe(3);
+    });
+
+    it('Should get characters 5 to 12', () => {
+      expect(substring('Jack Sparrow', {start: 5, end: 12})).toBe('Sparrow');
+    });
+  });
 
 });
