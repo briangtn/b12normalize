@@ -72,11 +72,13 @@ export class B12Normalizer {
     if (!toNormalize)
       return toNormalize;
 
-    if (Array.isArray(toNormalize))
-      return this.normalizeArray(toNormalize, rules);
+    const toNormalizeCopy = JSON.parse(JSON.stringify(toNormalize)) as object | [];
+
+    if (Array.isArray(toNormalizeCopy))
+      return this.normalizeArray(toNormalizeCopy, rules);
 
     for (let [key, rule] of Object.entries(rules)) {
-      let currentKey = toNormalize[key as keyof typeof toNormalize];
+      let currentKey = toNormalizeCopy[key as keyof typeof toNormalize];
 
       if (!currentKey) {
         continue;
@@ -96,10 +98,10 @@ export class B12Normalizer {
       }
 
       currentKey = this.applyRules(currentKey, rule) as never;
-      toNormalize[key as keyof typeof toNormalize] = currentKey;
+      toNormalizeCopy[key as keyof typeof toNormalizeCopy] = currentKey;
     }
 
-    return toNormalize;
+    return toNormalizeCopy;
   }
 
   /**

@@ -106,6 +106,16 @@ describe('B12Normalizer', () => {
       expect(result).toStrictEqual({username: 'jacks', password: 'j4ck'});
     });
 
+    it('Should does not edit the input reference', () => {
+      const value = {username: 'jack', password: 'j4ck'};
+      const result = buildedNormalizer.normalize(value, {username: (value: string) => {
+          return value + 's';
+        }});
+
+      expect(result).toStrictEqual({username: 'jacks', password: 'j4ck'});
+      expect(value).toStrictEqual({username: 'jack', password: 'j4ck'});
+    });
+
     it('Should normalize a simple flat object with predefined parser', () => {
       const result = buildedNormalizer.normalize({username: 'jack', password: 'j4ck'}, {password: 'toUpperCase'});
 
